@@ -24,8 +24,6 @@ namespace MusicCollection.Data
             _context.MusicTracks.Add(track);
             _context.SaveChanges();
         }
-
-        // Додайте інші методи за потребою (оновлення, видалення тощо)
     }
 }
 

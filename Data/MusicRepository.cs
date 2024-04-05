@@ -25,7 +25,34 @@ namespace MusicCollection.Data
             _context.SaveChanges();
         }
 
-        // Додайте інші методи за потребою (оновлення, видалення тощо)
+        public void RemoveAllTracks()
+        {
+            using (var context = new MusicDbContext())
+            {
+                var allTracks = context.MusicTracks.ToList();
+                context.MusicTracks.RemoveRange(allTracks);
+                context.SaveChanges();
+            }
+        }
+
+        public void UpdateTrack(MusicTrack updatedTrack)
+        {
+            using (var context = new MusicDbContext())
+            {
+                var existingTrack = context.MusicTracks.FirstOrDefault(t => t.Id == updatedTrack.Id);
+
+                if (existingTrack != null)
+                {
+                    existingTrack.Title = updatedTrack.Title;
+                    existingTrack.Artist = updatedTrack.Artist;
+                    existingTrack.Album = updatedTrack.Album;
+                    existingTrack.Year = updatedTrack.Year;
+
+                    context.Update(existingTrack);
+                    context.SaveChanges();
+                }
+            }
+        }
     }
 }
 

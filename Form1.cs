@@ -39,8 +39,7 @@ namespace MusicCollection
 
         private void btnRemoveAllTracks_Click(object sender, EventArgs e)
         {
-            var dbContextFactory = new MusicDbContext();
-            dbContextFactory.RemoveAllTracks();
+            _repository.RemoveAllTracks();
             RefreshDataGridView();
         }
 
